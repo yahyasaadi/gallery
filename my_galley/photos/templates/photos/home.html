@@ -1,5 +1,17 @@
 {% extends 'photos/base.html' %}
 
 {% block content %}
-    <h1>Yes it's working...</h1>
+    {% for pic in pics %}
+        <article class="media content-section">
+            <img class="rounded-circle article-img" src="{{ pic.img.url }}" width="200" height="200">
+            <div class="media-body">
+              <div class="article-metadata">
+                <a class="mr-2" href="#">{{ pic.img_name }}</a>
+                <small class="text-muted">{{ pic.img_location }}</small>
+              </div>
+              <h2><a class="article-title" href="#">{{ pic.img_category }}</a></h2>
+              <p class="article-content">{{ pic.img_description }}</p>
+            </div>
+        </article>
+    {% endfor %}
 {% endblock content %}
