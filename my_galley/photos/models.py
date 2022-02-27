@@ -22,5 +22,11 @@ class Photo(models.Model):
     img_location = models.ForeignKey(Location, on_delete=models.CASCADE)
     img_category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
+
+    # Methods for the Photo Models
+    
     def __str__(self):
         return f'{self.img_name}, {self.img_category}, {self.img_location}'
+
+
+    # Make migrations for the Db to work
