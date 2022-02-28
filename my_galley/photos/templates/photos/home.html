@@ -2,16 +2,35 @@
 
 {% block content %}
     {% for pic in pics %}
-        <article class="media content-section">
-            <img class="rounded-circle article-img" src="{{ pic.img.url }}" width="200" height="200">
-            <div class="media-body">
-              <div class="article-metadata">
-                <a class="mr-2" href="#">{{ pic.img_name }}</a>
-                <small class="text-muted">{{ pic.img_location }}</small>
+
+        <div class="container text-center">
+          <img src="{{ pic.img.url }}" class="img-thumbnail mt-3" width="500" height="500">
+          
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            View Image Details
+          </button>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Image Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <h2><a class="article-title" href="#">{{ pic.img_category }}</a></h2>
-              <p class="article-content">{{ pic.img_description }}</p>
+              <div class="modal-body">
+                <h3>Image name: {{ pic.img_name }}</h3>
+                <small class="text-muted">Taken at: {{ pic.img_location }}</small>
+                <small class="text-muted">Category of: {{ pic.img_category }}</small>
+                <h5>Description</h5>
+                <p>{{ pic.img_description }}</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
             </div>
-        </article>
+          </div>
+        </div>
     {% endfor %}
 {% endblock content %}
