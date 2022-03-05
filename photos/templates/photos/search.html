@@ -1,25 +1,48 @@
 {% extends 'photos/base.html' %} 
+
 {% block content %}
-<div class="container">
 
-  <div class="row">
-    {% if req_images %}
-      <h2>Found {{ req_images|length }} of searched term {{message}}</h2>
-    {% else %}
-      <h2> Found 0 req_images for the search term {{message}}</h2>
-    {% endif %}
+	{% if searched %}
+		<h1>You Searched For {{ searched }}</h1>
+		<br/>
 
-  </div>
+		{% for pic in pics %}
+        <div class="container text-center">
+          <img src="{{ pic.img.url }}" class="img-thumbnail mt-3" width="500" height="500">
+          
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target="#image-{{pic.id}}">
+            View Image Details
+          </button>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="image-{{pic.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Image Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <h3>Image name: {{ pic.img_name }}</h3>
+                <small class="text-muted">Taken at: {{ pic.img_location }}</small>
+                <small class="text-muted">Category of: {{ pic.img_category }}</small>
+                <h5>Description</h5>
+                <p>{{ pic.img_description }}</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+		{% endfor %}
+	{% else %}
+		<h1>Hey! You Forgot To Search For A Venue...</h1>
+	{% endif %}
 
-  <div class="row">
+	
 
-  {% if req_images %}
-    {% for img in req_images %}
-      <div class="col-sm-6 col-md-3">
-          <h1>{{img.img_name}}</h1>
-      </div>
-    {% endfor %}
-  {% endif %}
-  </div>
-</div>
+	
+	
 {% endblock %}
