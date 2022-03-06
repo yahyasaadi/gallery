@@ -25,9 +25,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY_DJ')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['noorsgallery.herokuapp.com']
+ALLOWED_HOSTS = ['noorsgallery.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
