@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.db.models import Q
 from .models import Photo, Location, Category
 
 # Create your views here.
